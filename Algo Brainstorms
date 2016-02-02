@@ -1,0 +1,36 @@
+Algo Brainstorms
+
+
+-Could use FFT to figure out how long to wait before ditching a particular strategy/purchase. We can do this by identifying a strong driving cycle and then only waiting for the duration of one of its cycles.
+
+
+----------------------------------------------------------------------------------------
+
+0. At each step, generate a list of price jumps from the closing prices.
+1. Generate a PDF of this list by doing a monte carlo fit for a set of normal distributions.
+2. Generate the CDF of this pdf for some value that you need the price to be in order to turn a profit.
+3. (1-that) is the probability that the price will jump up by the amount you gave to the cdf.
+4. If the probability is sufficiently high, then buy according to some weighting factor
+5. Once the price is reached, sell. If we get to the buy price again, then sell. 
+
+
+----------------------------------------------------------------------------------------
+
+Idea:
+
+0. Fit a distribution to recent stock prices
+1. Find which ones have a > 60% chance of going up
+2. Find which of these have a strong 5, 10, 15 minute fourier component
+3. Find which of these are upward momentum
+4. Combine these three signals in some way so that we buy the highest one
+	-Buy an amount that is somehow determined by the algo parameters
+5. Decide a sell or a give up price
+6. Sell at sell or give up price
+	-Or sell when momentum has a sustained downturn
+
+
+To Do:
+
+-Play with percent chance of going up. Can in theory reduce this as long as we apply other filters.
+-Revaluate buy/sell criteria
+-Pick highest profit, not just highest probability. Or combine both into some compount factor

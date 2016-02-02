@@ -1,0 +1,13 @@
+Parameters 
+Trade frequency                        :  5
+Data frequency                         :  1
+Per trade commision                    :  5
+Initial cash                     	    :  1e+05
+Number of high resolution data points  :  50
+---------------------------------------------------
+Results
+Average return                         :  -94.5119836990595
+Average return of profitable trades    :  63.9806097826092
+Average return of non-profitable trades:  -158.746867400881
+Percent of trades that were profitable :  0.288401253918495
+Money lost to commission               :  1595

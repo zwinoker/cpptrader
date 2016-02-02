@@ -1,0 +1,110 @@
+To do
+
+-PRIORITY:
+	-FIRST LINE OF PORTFOLIO.VALUE SHOULD BE THE HEADER: datetime, val
+	-Backtesting
+		-Fix issue where data is loaded into text files based on its time difference with the starting date rather than the start of the day
+	-FIX DOUBLE DATA ON SOME SQL TABLES
+		-EX: MKC_
+		-Find a way to do this automatically
+		-Use this common_schema command on every table in stockmarket database
+			'ALTER IGNORE TABLE MKC_ ADD UNIQUE INDEX idx (Date(20));'
+	-Start working on a GUI
+		-Do it in python, so start looking at how to use python and C++ together. Basically just need a python gui that sets up simulation.in and then runs the compiled c++ program
+		http://bokeh.pydata.org/en/latest/
+
+	
+
+-GENERAL: 
+	-Write something that automatically installs dependencies that aren't there
+	-Get some kind of benchmark
+		-Daily data for S+P500 and/or NASDAQ 100
+	-Update to C++11 style
+	-Beef up my own stats package?
+		-Probalby not for the public release
+	-Clean up and refactor code
+		-EX: in the scraper class, all three versions of the scraper do very similar things. Should be able to refactor the code to make it read more efficiently.
+	-If live testing, then how to load in most recent data if we're starting in the middle of the day?
+		-Might just have to start with an empty stock_market and wait until we fill it up before running the algo.
+			-Don't like this because it's not a good parallel with how the backtesting works.
+	-Get rid of hard-coded money amounts in the algo
+	-Fix the need to print "test 1" constantly
+	-Incorporate GSL and use to to write ML finder (use its minimization/maximization  functions and the general form of the distributions. Or just set up the ML finder as a matrix equation and use the linear alg package)
+	-Adjust amount we can spend so that we can diversify a portfolio by not spending max bet every time. Reduce max bet on each transaction. Also don't allow spending past max drawdown of original capital. Amount we spend on one buy should be determined by the riskiness of the stock
+	-Adjust sell price. Doesn't need to just be 10 cents always.
+	-Sell and stop loss prices should be determined based on the standard deviation of the distribution. This should also heavily influence the score since it is a measure of risk
+	-Figure out what PCA and MCMC stuff to do
+	-Use second derivative being negative to see if we're at the top of a price hill?
+	
+	-Finish analyze.r so that it write a complete report to the results file
+		-Should copy over initial portfolio.save, final portfolio.save, simulation.in, portfolio.orderhistory, portfolio.value, and then any analysis I want to do with the data
+		-Sharpe ratio, alpha, beta, etc
+
+	
+	-Set up so that portfolio value recorded once before sim starts. Then recover this value from portfolio.value when running analyze.r
+	
+	-Implement stat tools
+		-Check out Numerical recipes in C for this stuff and others
+		-Max likelihood est
+		-Auto correlation coef finder
+		-See learning stats with R book for others
+		-Extend boost distribution class so that we can combine an arbitrary number of distributions
+	-Decide new buying criteria
+
+	-Push everything to the server
+	-Implement momentum detector
+	
+	-Figure out how to make MC converge faster
+	-See algo brainstorm
+
+	-Implement real time updated graphics of results so we can click around and see pictures instead of just reading the text files.
+
+-Order class:
+	-Make order an abstract class and each order type a subclass of it
+
+-Algo class:
+	-Make a distribution wrapper class so that I can do any kind of evaluation method with an arbitrary distribution
+		-Or maybe can just use a function pointer so that I can generate the correct distribution when I need it.
+	
+
+-Simulation class:
+	-
+
+-Stock_Market class:
+	-
+
+-Portfolio class:
+	-
+		
+
+-Scraper class:
+	-How to load in data if you start live testing in the middle of the day?
+	-Make an options and futures scraper from yahoo finance
+	-Make a yahoo stock market data table. will need to scrape live
+
+-Testing:
+	-Backtesting: 
+		-Come up with a good systematic way of backtesting an algo (i.e. what date ranges, start times, etc. to use)
+	-Live testing:
+		-
+
+-MISC:
+	-People to send finished product to:
+		-Haas
+		-Evan/Allen
+		-Jesse
+		-Zach Levine
+	-Look into make files
+	-Add error handling cases everywhere I can think of them
+	-Port quantmod's "getoptionchain" to c++ so that I can start scraping the data
+		-Same with futures
+
+
+
+
+
+
+
+
+
+

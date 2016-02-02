@@ -1,0 +1,50 @@
+clang++ -std=c++11 -o run_sim run_sim.cpp simulation.cpp Stock_Market.cpp portfolio.cpp -L/usr/lib/i386-linux-gnu -lmysqlclient -lboost_date_time -I/usr/include/cppconn -I/usr/include/boost/date_time -I/usr/include/mysql -L/usr/lib/mysql -lmysqlcppconn-static 
+
+
+
+clang++ -std=c++11 -stdlib=libc++ -o run_sim run_sim.cpp simulation.cpp Stock_Market.cpp portfolio.cpp algo.cpp scraper.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn-static
+
+
+clang++ -std=c++11 -stdlib=libc++ -o compile_test_algo_scraper testmain.cpp algo.cpp scraper.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn-static
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_scraper test_scraper.cpp scraper.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn-static
+
+clang++ -std=c++11 -stdlib=libc++ -o test_portfolio test_portfolio.cpp portfolio.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn-static
+
+clang++ -std=c++11 -stdlib=libc++ -o test_stockmarket test_stockmarket.cpp Stock_Market.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn
+
+clang++ -std=c++11 -stdlib=libc++ -o sqltest sqltest.cpp -L/usr/local/opt/curl/lib -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-connector-c++/include -L/usr/local/opt/mysql-connector-c++/lib -I/usr/local/opt/mysql/include/mysql -L/usr/local/opt/mysql/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -I/usr/local/opt/boost/include/boost/date_time -L/usr/local/opt/boost/lib -lboost_date_time -lcurl -lmysqlclient  -lmysqlcppconn
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_stockmarket test_stockmarket.cpp Stock_Market.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lmysqlcppconn
+
+clang++ -std=c++11 -stdlib=libc++ -o test_scraper test_scraper.cpp scraper.cpp Stock_Market.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time
+
+
+
+clang++ -std=c++11 -stdlib=libc++ -o simulation simulation.cpp scraper.cpp Stock_Market.cpp portfolio.cpp algo.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lmysqlcppconn
+
+clang++ -std=c++11 -stdlib=libc++ -o test_simulation test_simulation.cpp simulation.cpp scraper.cpp Stock_Market.cpp portfolio.cpp algo.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_simulation test_simulation.cpp simulation.cpp scraper.cpp Stock_Market.cpp portfolio.cpp algo.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lfftw3
+
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_Rcpp test_Rcpp.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lmysqlcppconn -lRcpp
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_Rcpp test_Rcpp.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lmysqlcppconn -lR -L/Library/Frameworks/R.framework/Versions/3.1/Resources/library/RInside/libs -I/Library/Frameworks/R.framework/Versions/3.1/Resources/library/RInside/include -I/Library/Frameworks/R.framework/Versions/3.1/Resources/library/Rcpp/include -L/Library/Frameworks/R.framework/Versions/3.1/Resources/library/Rcpp/libs -I/Library/Frameworks/R.framework/Versions/3.1/Resources/include -L/Library/Frameworks/R.framework/Versions/3.1/Resources/lib
+
+
+clang++ -std=c++11 -stdlib=libc++ -o test_simulation test_simulation.cpp simulation.cpp scraper.cpp Stock_Market.cpp portfolio.cpp algo.cpp order.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time -lfftw3 -lboost_system -lboost_filesystem
+
+clang++ -std=c++11 -stdlib=libc++ -o test_simulation test_simulation.cpp simulation.cpp scraper.cpp Stock_Market.cpp portfolio.cpp algo.cpp order.cpp `mysql_config --cflags --libs` -lcurl -lboost_date_time
+
+
+
+
+
+
+
