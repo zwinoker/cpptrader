@@ -19,18 +19,6 @@ Portfolio::Portfolio() {
 	orderhistory = "portfolio.orderhistory";
 }
 
-// /* Can build a portfolio by giving it a cash value and a vector of assets */
-// Portfolio::Portfolio(double c, vector<pair<string, int> > symbol_list) {
-// 	cash = c;
-// 	vector<pair<string, int> >::const_iterator it;
-// 	for(it= symbol_list.begin(); it != symbol_list.end(); ++it) {
-// 		holdings[it->first] = it->second;
-// 	}
-// 	savefile = "portfolio.save";
-// 	orderhistory = "portfolio.orderhistory";
-
-// }
-
 /* Takes a name of a text file that contains the portfolio data.
  Format is cash on first line, then (asset,numasset) on each line after that */
 Portfolio::Portfolio(string filename) {
@@ -102,45 +90,6 @@ void Portfolio::order(string datetime, Order order){
 		}
 	}
 }
-
-// /* Old method for recording objects. Only used in live testing now */
-// void Portfolio::record_order(string datetime, tuple<string,int,double> order) {
-// 	ofstream writefile;
-// 	writefile.open(orderhistory, std::fstream::app);
-// 	string info, symbol;
-// 	int num;
-// 	double price;
-// 	symbol = get<0>(order);
-// 	num = get<1>(order);
-// 	price = get<2>(order);
-// 	info = datetime + ", " + symbol + ", " + to_string(num) + ", " + to_string(price) + "\n";
-//     writefile << info;
-// 	writefile.close();
-// }
-
-// /* Old method for executing an order. Only used in live testing now. */
-// void Portfolio::order(string datetime, tuple<string,int,double> order){
-// 	string symbol;
-// 	int num;
-// 	double price;
-// 	symbol = get<0>(order);
-// 	num = get<1>(order);
-// 	price = get<2>(order);
-// 	if (symbol != "----") {
-// 		record_order(datetime,order);
-// 		cash -= (num*price);
-// 		holdings[symbol] += num;
-// 	}
-// }
-
-
-// /* Executes a given list of orders */
-// void Portfolio::listorder(string datetime, orderlist orders) {
-// 	orderlist::iterator it;
-// 	for (it = orders.begin(); it != orders.end(); ++it) {
-// 		order(datetime, (*it));
-// 	}
-// }
 
 /* Prints the current portfolio to the console */
 void Portfolio::show_portfolio() {
