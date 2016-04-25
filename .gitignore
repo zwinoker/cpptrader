@@ -1,3 +1,6 @@
+results
+sqltest.dSYM
+test_*/*
 algo-brainstorms
 analyze.r
 output_test_scraper_
