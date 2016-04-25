@@ -1,1 +1,0 @@
-select * from (select * from AAPL_ where Date >= '2015-03-10 10:30:00' and Date <= '2015-03-11 10:30:00' and time(Date) < '16:00:00' and time(date) >= '09:31:00' order by Date) as bigdates where timestampdiff(minute, '2015-03-10 10:30:00', Date) mod 2 = 0 order by Date;
