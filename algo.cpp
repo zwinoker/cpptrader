@@ -81,8 +81,7 @@ void Algo::execute_order_book(Stock_Market &sm, Portfolio &p) {
 
 /* Evaluates current stock market to issue buy/sell orders. This method is called from simulation object every tradefrequency minutes */
 void Algo::eval(Stock_Market &sm, Portfolio &p) {
-	// sm.show();
-	p.show_orderbook();
+	// Fill in algo here
 }
 
 

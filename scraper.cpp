@@ -10,8 +10,6 @@
 #include <algorithm>
 #include <array>
 
-
-
 #include "boost_dt_extensions.h"
 
 using namespace std;
@@ -36,7 +34,7 @@ Scraper::Scraper (int freq, int maxticks) {
 
 	/*Constructs the symbols list*/
 	string sym;
-	ifstream symbols;
+	boost::filesystem::ifstream symbols;
 	symbols.open("symbolslist.csv");
 
 	int counter = 0;
@@ -77,7 +75,7 @@ Scraper::Scraper (int freq, int maxticks, const char* servr, const char* usrname
 
 	/*Constructs the symbols list from a file*/
 	string sym;
-	ifstream symbols;
+	boost::filesystem::ifstream symbols;
 	symbols.open("symbolslist.csv");
 
 	int counter = 0;
@@ -119,7 +117,6 @@ void Scraper::initialize_sql_connection() {
 
 
 	/* Open MySQL connection */
-
 	mysql_init(&mysql);
 	mysql_options(&mysql,MYSQL_READ_DEFAULT_GROUP,"your_prog_name");
 	if (!mysql_real_connect(&mysql,server,username,password,database,0,NULL,0))
@@ -159,7 +156,7 @@ void Scraper::create_text_files() {
 	current_path(textdatafolder);
 
 	/* For creating files */
-	fstream fs;
+	boost::filesystem::fstream fs;
 
 	/* For each element in symbolslist, create textdatafolder/symbol */
 	vector<string>::iterator it;
@@ -185,7 +182,7 @@ void Scraper::initialize_text_data(string start, string end, int frequency) {
 
 	/* For iterating through symbols and associated data */
 	vector<string>::iterator it;
-	ofstream textdata;
+	boost::filesystem::ofstream textdata;
 
 	/* Change directory to the place where all text files are stored */
 	path parentdirectory = current_path();
@@ -234,15 +231,13 @@ void Scraper::initialize_text_data(string start, string end, int frequency) {
 
 /* Gets data from text files */
 void Scraper::text_scrape(market &mdata, string currentdatetime) {
-
-
 	/* Change directory to the place where all text files are stored */
 	path parentdirectory = current_path();
 	path textdatafolder = current_path();
 	textdatafolder /= "textdata";
 	current_path(textdatafolder);
 
-	ifstream textdata;
+	boost::filesystem::ifstream textdata;
 	ptime currenttime = time_from_string(currentdatetime);
 	ptime filetime;
 
@@ -259,7 +254,6 @@ void Scraper::text_scrape(market &mdata, string currentdatetime) {
 
 	/* Attempt to get most recent tick data for  */
 	for (it = symbolslist.begin(); it != symbolslist.end(); ++it) {
-
 
 		/* Open file associated with this symbol and read the date in the most recent line */
 		textdata.open((*it));
@@ -330,16 +324,11 @@ void Scraper::text_scrape(market &mdata, string currentdatetime) {
 
 /* Gets data from SQL database. */
 void Scraper::backtest_scrape(market &mdata, string datetime){
-	/* Convert SQL database params for the MYSQL_connect library to read */
-	// const char *server   = srvr.c_str();
-	// const char *username = uname.c_str();
-	// const char *password = pw.c_str();
-	// const char *database = dbase.c_str();
 
     /*Populate symbols list*/
     vector<string> symbol_list;
     string sym;
-	ifstream symbols;
+	boost::filesystem::ifstream symbols;
 	symbols.open("symbolslist.csv");
 
 	while(getline(symbols,sym,',')) {
@@ -347,17 +336,6 @@ void Scraper::backtest_scrape(market &mdata, string datetime){
 	}
 	symbols.close();
     vector<string>::iterator it;
-
-    /* Open MySQL connection */
- //    MYSQL mysql;
-
-	// mysql_init(&mysql);
-	// mysql_options(&mysql,MYSQL_READ_DEFAULT_GROUP,"your_prog_name");
-	// if (!mysql_real_connect(&mysql,server,username,password,database,0,NULL,0))
-	// {
-	//     fprintf(stderr, "Failed to connect to database: Error: %s\n",
-	//           mysql_error(&mysql));
-	// }
 
 	MYSQL_ROW row;
 
@@ -414,8 +392,6 @@ void Scraper::backtest_scrape(market &mdata, string datetime){
 		
 	
     }
-    /* Close MySQL connection */
-    //mysql_close(&mysql);
 } 
 
 

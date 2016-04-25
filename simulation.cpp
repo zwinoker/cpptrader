@@ -143,7 +143,7 @@ void Simulation::run_simulation() {
 
 	/* Live run. */
 	if (live) {
-		ptime currenttime = second_clock::local_time() + hours(tz_offset); // + 3 hours since we live in LA. Make this an input parameter
+		ptime currenttime = second_clock::local_time() + hours(tz_offset);
 		pstart = currenttime;
 		ptime dayend(pstart.date(), hours(20)); //same day but at 4PM
 
@@ -237,7 +237,6 @@ void Simulation::run_simulation() {
 				/* Otherwise, see if we want to trade. */
 				else {
 					/* Update stock_market's locally stored information. */
-					//scr.backtest_scrape(sm.marketdata,sm.workingtime);
 					scr.text_scrape(sm.marketdata,sm.workingtime);
 
 					/* See if there are any outstanding orders that need to be executed */

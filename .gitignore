@@ -1,6 +1,10 @@
 algo-brainstorms
 analyze.r
 output_test_scraper_
+portfolio.orderhistory
+portfolio.save
+portfolio.value
+run_sim.cpp
 scraper_time.sh
 sim-compile-lines
 simresults

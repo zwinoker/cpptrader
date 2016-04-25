@@ -61,13 +61,6 @@ class Scraper {
 
 		/* Folder name where we store text files with data */
 		void create_text_files();
-		// boost::filesystem::path workingdirectory;
-		// boost::filesystem::path textdatafolder; 
-		
-		
-
-
-
 };
 
 
