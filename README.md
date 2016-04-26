@@ -6,6 +6,7 @@ This is a C++ framework for implementing and testing trading systems for the sto
 # Install
 
 The following libraries are required:
+
 1. MySQL connector
 
 2. Boost
