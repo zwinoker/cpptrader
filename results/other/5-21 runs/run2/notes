@@ -1,8 +1,0 @@
-Notes: 
-
--Changes from run 1:
-	-1. Buy once we clear transaction cost. Might reduce profit on some trades, but 	also could eliminate loss on others. Might come out net positive from this 		exchange. Also change cdf criteria to 3 cents instead of 10, since our transcost 	is 3 cents per share
-
--Results:
-
-	
