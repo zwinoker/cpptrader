@@ -1,6 +1,6 @@
 # cpptrader
 
-This is a C++ framework for implementing and testing stock trading algorithms. It supports up to minute-level resolution price data. Data is assumed to be stored in a MySQL datatbase.  
+This is a C++ framework for implementing and testing trading systems for the stock market. It supports up to minute-level resolution price data. Data is assumed to be stored in a MySQL datatbase.  
 
 
 # Install
@@ -39,7 +39,7 @@ MYSQL_DBNAME
 ```live?``` is a boolean that is ```false``` if we're running a backtest, and ```true``` otherwise. ```tz_offset``` is your timezone offset (in hours) from New York City. ````max_ticks``` is the number of previous time steps our algorithm will consider at any given time. ```frequency``` is the number of time steps between each stored data point. ```tradefrequency``` is the number of time steps we wait between successive executions of the trading algorithm.
 
 # Usage
-Modify ```algo.cpp``` to implement and execute your trading algorithm. The simulation interacts with the trading algorithm by calling ```algo.eval()```, so modify this method when implementing a trading system.
+Modify ```algo.cpp``` to implement and execute your trading algorithm. The simulation interacts with the trading algorithm by calling ```algo.eval()```, so modify this method when implementing a trading system. Note that this method takes a reference to the Stock_Market and the Porftolio, so the latter can be modified directly by the algo.
 
 Once the input parameters are set and the trading system is implemented, run 
 ```
