@@ -1,12 +1,12 @@
 portfolio.save
 2015-03-05 15:09:00
 2015-03-10 10:05:00
-false
-3
-10
-1
-2
-localhost
-root
-sqlpass
-stockmarket
+live?
+tz_offset
+max_ticks
+frequency
+tradefrequency
+MYSQL_SERVER
+MYSQL_USER
+MYSQL_PASSWORD
+MYSQL_DBNAME
