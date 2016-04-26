@@ -19,9 +19,12 @@ stats*
 symbolslistbackup.csv
 test-scrips.sql
 test.txt
+testmain.cpp
+testme
 test_*
 todo
 types.h
 .RData
 .Rhistory
 mysimulation.in
+.DS_Store

@@ -1,4 +1,4 @@
-# Name
+# cpptrader
 
 This is a C++ framework for implementing and testing stock trading algorithms. It supports up to minute-level resolution price data. Data is assumed to be stored in a MySQL datatbase.  
 
@@ -19,42 +19,38 @@ Minute level data was scraped from Google Finance using the R script ```getPrice
 The symbols we collect data on and use are stored in symbolslist.csv.
 
 
-# Setting test parameters
+# Setting input parameters
 After compiling the executable, set parameters in ```simulation.in```. These are:
 ```
 file where we save portfolio holdings
-
 start date-time
-
 end date-time
-
 live?
-
 tz_offset
-
 max_ticks
-
 frequency
-
 tradefrequency
-
 MYSQL_SERVER
-
 MYSQL_USERNAME
-
 MYSQL_PASSWORD
-
 MYSQL_DBNAME
 ```
 
-```live?``` is a boolean that is ```false``` if we're running a backtest, and ```true``` otherwise. ```tz_offset`` is your timezone offset (in hours) from New York City. ````max_ticks``` is the number of previous time steps our algorithm will consider at any given time. ```frequency``` is the number of time steps between each stored data point. ```tradefrequency``` is the number of time steps we wait between successive executions of the trading algorithm.
+```live?``` is a boolean that is ```false``` if we're running a backtest, and ```true``` otherwise. ```tz_offset``` is your timezone offset (in hours) from New York City. ````max_ticks``` is the number of previous time steps our algorithm will consider at any given time. ```frequency``` is the number of time steps between each stored data point. ```tradefrequency``` is the number of time steps we wait between successive executions of the trading algorithm.
 
 # Usage
-Modify ```algo.cpp```` to implement and execute your trading algorithm. The simulation interacts with the trading algorithm by calling ````algo.eval()```, so modify this method when implementing a trading system.
+Modify ```algo.cpp``` to implement and execute your trading algorithm. The simulation interacts with the trading algorithm by calling ```algo.eval()```, so modify this method when implementing a trading system.
 
 Once the input parameters are set and the trading system is implemented, run 
-```make
+```
+make
+./run_simulation < simulation.in
+```
 
-./run_simulation < simulation.in```
+# Results
+
+The running value of the portfolio is written to ```portfolio.value```. The order history is written to ```portfolio.orderhistory```. Portoflio holdings are saved to ```portfolio.save```. 
+
+
 
 
