@@ -7,7 +7,9 @@ This is a C++ framework for implementing and testing trading systems for the sto
 
 The following libraries are required:
 1. MySQL connector
+
 2. Boost
+
 3. curl
 
 When these are installed, just navigate to the project directory and type ```make```. The executable is called ```run_simulation```.
