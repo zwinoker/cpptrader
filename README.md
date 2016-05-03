@@ -47,6 +47,18 @@ MYSQL_DBNAME
 
 The date-times are in the format ```YYYY-MM-DD HH:MM:SS```, for example ```2015-03-05 15:09:00```.
 
+# Usage
+Modify ```algo.cpp``` to implement and execute your trading algorithm. The basic flow here is:
+* Get relevant information from the ```Stock_Market``` object
+* Use your trading system to generate one or more ```Order``` objects
+* Give these to the ```Portfolio``` object using the ```order()``` method. These will get executed either immediately (if they are market orders) or at a certain price or date-time (if they are limit orders).
+
+Once the input parameters are set and the trading system is implemented, run 
+```
+make
+./run_simulation < simulation.in
+```
+
 # Useful methods
 ## Stock_Market.cpp
 The stock_market object contains a few methods for retrieving price data. Use these for getting input data for your trading system.
@@ -63,17 +75,7 @@ Contains constructors for market and limit orders. Limit orders are also constru
 * ```sell_all(Portfolio&, Stock_Market&)``` -- can be used to liquidate a portfolio at the current market value.
 * ```eval(Portfolio&, Stock_Market&)``` -- called every ```frequency*tradefrequency``` minutes to execute trading algorithm.
 
-# Usage
-Modify ```algo.cpp``` to implement and execute your trading algorithm. The basic flow here is:
-* Get relevant information from the ```Stock_Market``` object
-* Generate one or more ```Order``` objects
-* Give these to the ```Portfolio``` object using the ```order()``` method. 
 
-Once the input parameters are set and the trading system is implemented, run 
-```
-make
-./run_simulation < simulation.in
-```
 
 # Results
 
