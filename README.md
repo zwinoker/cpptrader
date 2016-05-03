@@ -3,27 +3,31 @@
 This is a C++ framework for implementing and testing trading systems for the stock market. It supports up to minute-level resolution price data. Data is assumed to be stored in a MySQL datatbase.  
 
 
-# Install
+# Dependencies
 
-The following libraries are required:
+* MySQL connector
+* boost-date-time
+* boost-system
+* boost-filesystem
+* libcurl
 
-1. MySQL connector
-
-2. Boost
-
-3. curl
-
-When these are installed, just navigate to the project directory and type ```make```. The executable is called ```run_simulation```.
+# Installation
+Install the dependencies and then clone and compile cppTrader : 
+```
+git clone https://github.com/zwinoker/cpptrader.git
+make
+```
+The executable is called ```run_simulation```.
 
 
 # Data
-Minute level data was scraped from Google Finance using the R script ```getPrices.r``` and stored in a MySQL database in the following format: Tables are named according to symbol (EX: "AAPL_", including the underscore). Each row in a table has the columns { Date-Time, Close, High, Low, Open, Volume } for each minute. 
+Minute level data was scraped from Google Finance using the R script ```getPrices.r``` and stored in a MySQL database in the following format: Tables are named according to symbol (EX: "AAPL_", including the underscore). Each row in a table has the columns { Date-Time, Close, High, Low, Open, Volume } for each minute. Note that data is not included in this repository. Users must collect it themselves.
 
-The symbols we collect data on and use are stored in symbolslist.csv.
+The symbols we collect data on and use are stored in symbolslist.csv. The current list is made up of symbols we can reliably get minute-level data on using the Google Finance API.
 
 
 # Setting input parameters
-After compiling the executable, set parameters in ```simulation.in```. These are:
+Set parameters in ```simulation.in```. These are:
 ```
 file where we save portfolio holdings
 start date-time
@@ -39,10 +43,31 @@ MYSQL_PASSWORD
 MYSQL_DBNAME
 ```
 
-```live?``` is a boolean that is ```false``` if we're running a backtest, and ```true``` otherwise. ```tz_offset``` is your timezone offset (in hours) from New York City. ````max_ticks``` is the number of previous time steps our algorithm will consider at any given time. ```frequency``` is the number of time steps between each stored data point. ```tradefrequency``` is the number of time steps we wait between successive executions of the trading algorithm.
+```live?``` is a boolean that is ```false``` if we're running a backtest, and ```true``` otherwise. ```tz_offset``` is your timezone offset (in hours) from New York City. ```max_ticks``` is the number of previous time steps our algorithm will consider at any given time. ```frequency``` is the number of time steps between each stored data point. ```tradefrequency``` is the number of time steps we wait between successive executions of the trading algorithm.
+
+The date-times are in the format ```YYYY-MM-DD HH:MM:SS```, for example ```2015-03-05 15:09:00```.
+
+# Useful methods
+## Stock_Market.cpp
+The stock_market object contains a few methods for retrieving price data. Use these for getting input data for your trading system.
+
+## Order.cpp
+Contains constructors for market and limit orders. Limit orders are also constructed using a stoploss price and a bool indicating if we want to buy/sell above or below that price.
+
+## Portfolio.cpp
+* ```order(Order)``` -- submit an Order.
+* ```show_orderbook()``` -- prints your outstanding orders to the terminal
+* ```show_portfolio()``` -- prints current portfolio holdings to the terminal
+
+## Algo.cpp
+* ```sell_all(Portfolio&, Stock_Market&)``` -- can be used to liquidate a portfolio at the current market value.
+* ```eval(Portfolio&, Stock_Market&)``` -- called every ```frequency*tradefrequency``` minutes to execute trading algorithm.
 
 # Usage
-Modify ```algo.cpp``` to implement and execute your trading algorithm. The simulation interacts with the trading algorithm by calling ```algo.eval()```, so modify this method when implementing a trading system. Note that this method takes a reference to the Stock_Market and the Porftolio, so the latter can be modified directly by the algo.
+Modify ```algo.cpp``` to implement and execute your trading algorithm. The basic flow here is:
+* Get relevant information from the ```Stock_Market``` object
+* Generate one or more ```Order``` objects
+* Give these to the ```Portfolio``` object using the ```order()``` method. 
 
 Once the input parameters are set and the trading system is implemented, run 
 ```
